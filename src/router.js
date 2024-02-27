@@ -1,20 +1,27 @@
 import { Router } from 'itty-router';
+import getIndexHTML from './getIndexHtml'
+import getFoliaBuild from './getFoliaBuild';
 
 // now let's create a router (note the lack of "new")
 const router = Router();
 
-// GET collection index
-router.get('/api/todos', () => new Response('Todos Index!'));
+// download
+router.get('/api/download', (req) => {
+	let response = getFoliaBuild.fetch(req);
 
-// GET item
-router.get('/api/todos/:id', ({ params }) => new Response(`Todo #${params.id}`));
-
-// POST to the collection (we'll use async here)
-router.post('/api/todos', async (request) => {
-	const content = await request.json();
-
-	return new Response('Creating Todo: ' + JSON.stringify(content));
+	return response;
 });
+
+let indexPages = [
+	"/index.html",
+	"/"
+];
+
+indexPages.forEach(function(value){
+	router.get(value,function(req){
+		return getIndexHTML.fetch(req);
+	})
+})
 
 // 404 for everything else
 router.all('*', () => new Response('Not Found.', { status: 404 }));
