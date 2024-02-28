@@ -16,7 +16,7 @@ export default {
 
         if (missingParams){
             return new Response(
-                "<p>Missing \"version\" or \"build\" params. Check out <a href=\"/\">this</a> for more info.</p>",
+                "<p>Missing \"version\" or \"build\" params. Check out <a href=\"/\">this</a> for more information on using FoliaGetter.</p>",
                 {
                     status: 422,
                     headers: {
