@@ -18,7 +18,7 @@ export default {
                         code {
                             background-color: #242424;
                             color: #efefef;
-                            padding: 8px;
+                            border: 2px solid #242424;
                         }
                     </style>
                 </head>
