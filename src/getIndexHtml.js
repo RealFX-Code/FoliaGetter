@@ -45,11 +45,14 @@ export default {
                             to get a folia jar for version 1.20.4 with the latest available build:
                         </p>
                         <code>
-                            https://fg.wtvr.cc/download?version=1.20.4&build=latest
+                            https://fg.wtvr.cc/api/download?version=1.20.4&build=latest
                         </code>
                         <ul>
                             <li>
                                 In the build query you can replace "build" with a specific build you want to download.
+                                <br><blockquote>
+                                    NOTE: you can use the build number "latest" for the latest available Folia build.
+                                </blockquote>
                             </li>
                             <li>
                                 You can also replace the version query with your desired version.
