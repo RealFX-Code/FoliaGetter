@@ -1,5 +1,5 @@
 export default {
-    fetch(req, env, ctx) {
+    async fetch(req, env, ctx) {
 
         let requiredParams = [
             "version",
@@ -26,19 +26,28 @@ export default {
             );
         }
 
-        let Build = req.query.build
-        let Version = req.query.version
+        let foliaBuild = req.query.build
+        let foliaVersion = req.query.version
 
-        if (Build == "latest") {
-            const buildsRequest = fetch(`https://api.papermc.io/v2/projects/folia/versions/${Version}/builds/`);
-            const buildsRequestJson = JSON.parse( buildsRequest.text())
+        if (foliaBuild == "latest") {
+            const buildsRequest = new Request(`https://api.papermc.io/v2/projects/folia/versions/${foliaVersion}/builds/`);
+            const buildsResponse = await fetch(buildsRequest)
+                .then(function(response){
+                    if(!response.ok) {
+                        throw new Error(`HTTP Error. Code: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(function(response){
+                    return JSON.parse(response);
+                });
 
             let builds = []
-            builds = buildsRequestJson.builds;
+            builds = buildsResponse.builds;
 
             let latestBuild = builds[builds.length-1].build; //TODO: make this not feel ridiculusly sketchy
 
-            Build = latestBuild;
+            foliaBuild = latestBuild;
 
             //
             //  I've been looking at the word "build" so long that it feels wrong however I spell it. send help
@@ -49,9 +58,9 @@ export default {
         // Folia JAR URL template:
         // https://api.papermc.io/v2/projects/folia/versions/<version>/builds/<build>/downloads/folia-<version>-<build>.jar
 
-        let foliaURL = "https://api.papermc.io/v2/projects/folia/versions/" + Version
-            + "/builds/" + Build
-            + "/downloads/folia-" + Version + "-" + Build + ".jar";
+        let foliaURL = "https://api.papermc.io/v2/projects/folia/versions/" + foliaVersion
+            + "/builds/" + foliaBuild
+            + "/downloads/folia-" + foliaVersion + "-" + foliaBuild + ".jar";
         
         return new Response(
             "Moved",
