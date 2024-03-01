@@ -63,11 +63,11 @@ export default {
             + "/downloads/folia-" + foliaVersion + "-" + foliaBuild + ".jar";
         
         return new Response(
-            "Moved",
+            "Sending you to the requested Folia URL.",
             {
                 status: 302,
                 headers: {
-                    Location: foliaURL
+                    "Location": foliaURL
                 }
             }
         );
