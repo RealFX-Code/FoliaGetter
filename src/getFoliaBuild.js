@@ -45,7 +45,7 @@ export default {
             let builds = []
             builds = buildsResponse.builds;
 
-            let latestBuild = builds[builds.length-1].build; //TODO: make this not feel ridiculusly sketchy
+            let latestBuild = builds[builds.length-1].build;
 
             foliaBuild = latestBuild;
 
