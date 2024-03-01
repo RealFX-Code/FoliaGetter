@@ -77,6 +77,15 @@ export default {
                             https://api.papermc.io/v2/projects/folia/versions/&lt;version&gt;/builds/
                         </code>
                     </div>
+                    <hr>
+                    <div>
+                        <h2>
+                            Where to find the sources to this API?
+                        </h2>
+                        <p>
+                            At <a href="https://github.com/RealFX-Code/FoliaGetter/">this project's github page</a> of course!
+                        </p>
+                    </div>
                 </body>
             </html>
             `,
